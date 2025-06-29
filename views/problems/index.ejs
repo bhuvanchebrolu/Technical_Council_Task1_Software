@@ -1,0 +1,23 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <h1>All Cases</h1>
+    <form action="/problems/new" method="GET">
+        <button>Add new problem</button> 
+    </form>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <%for(problem of allProblems){%>
+        <a href="/problems/<%=problem._id%>" style="text-decoration: none;">
+        <div class="card col problemCard">
+            <img src="<%=problem.image.url%>" class="card-img-top" alt="Problem_image" style="height:16rem">
+            <div class="card-image-overlay">abcd</div>
+            <div class="card-body">
+                <p class="card-text"><b><%=problem.species%></b>
+        
+                </p>
+            </div>
+        </div>
+        </a>
+    <%}%>
+    </div>
+    
+</body>

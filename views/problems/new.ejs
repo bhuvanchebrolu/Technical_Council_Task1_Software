@@ -1,0 +1,59 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <br>
+            <h1> Post a case</h1>
+            <br>
+            <form method="POST" action="/problems" class="needs-validation" novalidate enctype="multipart/form-data"> 
+                <div class="mb-3">
+                    <label for="species" class="form-label">Species</label>
+                    <input name="problem[species]" placeholder="enter species" type="text" class="form-control" required>
+                    <div class="invalid-feedback">It is required to know the species , kindly provide its info</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="problem[description]" placeholder="enter description" rows="10" cols="10" class="form-control" required></textarea>
+                    <div class="valid-feedback">Your description has enabled us to figure out severity</div>
+                    <div class="invalid-feedback">Description is required, to recognize its  severity</div>
+                </div>
+                <div class="mb-3">
+                    <label for="young" class="form-label">Enter whether young</label>
+                    <input name="problem[young]" placeholder="Is young" type="text" class="form-control" required>
+                    <div class="invalid-feedback">Please provide is Young or not</div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload image </label>
+                    <input name="problem[image]"  type="file" class="form-control" >
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Location</label>
+                    <input name="problem[place]" placeholder="enter area where found" class="form-control" required>
+
+                    <div class="mapNew mt-3 offset-1">
+                        <h5>Have problem locating it, Here's the map <i class="fa-solid fa-location-dot"></i> </h5>
+                        <a href="https://mapcarta.com/W100857261?utm_source=chatgpt.com" class="btn btn-warning" target="_blank" rel="noopener noreferrer"  >Map</a>
+                        <h6>Instructions</h6>
+                        <div class="instructions">
+                            <p>1.Look out for landmarks -- Admin block, Library , Temples, MIG etc:-</p>
+                            <p>2.Look out for nearby messes, hostels </p>
+                            <p>3.Look out for nearby departments</p>
+                            <p>4.In case you are near quarters , look out for street number</p>
+
+                            <h6><i class="fa-solid fa-map-location"></i>&nbsp;&nbsp;Your clarity reduces our effort in locating it</h6>
+                        </div>
+
+                    </div>
+                    <div class="invalid-feedback">Location is must for us to access the species</div>
+                </div>
+            
+                <button class="btn btn-dark post-btn">Post</button>
+            </form>
+            <br>
+
+
+        </div>
+    </div>
+    
+    
+</body>

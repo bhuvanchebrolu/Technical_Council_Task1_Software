@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <br>
+    <div class="row mt-2">
+        <div class="col-8 offset-2">
+            <h1>Edit your case</h1>
+            <br>
+            <form method="POST" action="/problems/<%=problem._id%>?_method=PUT" novalidate class="needs-validation">
+
+                <div class="mb-3">
+                    <label for="species" class="form-label">Species</label>
+                    <input name="problem[species]" value="<%=problem.species%>" type="text" class="form-control" required>
+                    <div class="invalid-feedback">It is required to know the species , kindly provide its info</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="problem[description]"value="<%=problem.description%>" rows="10" cols="10" class="form-control" required></textarea>
+                    <div class="valid-feedback">Your description has enabled us to figure out severity</div>
+                    <div class="invalid-feedback">Description is required, to recognize its  severity</div>
+                </div>
+                <div class="mb-3">
+                    <label for="young" class="form-label">Enter whether young</label>
+                    <input name="problem[young]" value="<%=problem.young%>" type="text" class="form-control" required>
+                    <div class="invalid-feedback">Please provide is Young or not</div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Enter valid image URL/link</label>
+                    <input name="problem[image]" value="<%=problem.image%>" class="form-control" required>
+                    <div class="invalid-feedback">Image is compulsory!!</div>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Location</label>
+                    <input name="problem[place]" value="<%=problem.location%>" class="form-control" required>
+                    <div class="invalid-feedback">Location is must for us to access the species</div>
+                </div>
+                <button class="btn btn-dark editBtn mt-3">Submit</button>
+            </form>
+            <br>
+
+        </div>
+    </div>
+    
+    
+</body>
