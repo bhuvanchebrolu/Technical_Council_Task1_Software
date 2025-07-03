@@ -42,12 +42,23 @@ module.exports.renderEditForm=async(req,res)=>{
         req.flash("error","Case you are trying to access doesnt exist");
         return res.redirect("/problems");
     }
-    res.render("problems/edit.ejs",{problem});
+    let originalImageUrl=problem.image.url;
+    originalImageUrl=originalImageUrl.replace("/upload","/upload/w_250");   
+    res.render("problems/edit.ejs",{problem,originalImageUrl});
 }
 
 module.exports.updateProblem=async(req,res)=>{
     let {id}=req.params;
-    await Problem.findByIdAndUpdate(id,{...req.body.problem});
+    let problem=await Problem.findByIdAndUpdate(id,{...req.body.problem});
+    if(typeof req.file !== "undefined"){
+        let url=req.file.path;
+        let filename=req.file.filename;
+        problem.image={url,filename};
+        await problem.save();   
+
+    }
+    
+    
     req.flash("success","You have updated the case successfully!!")
     res.redirect(`/problems/${id}`);
 }

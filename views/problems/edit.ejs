@@ -5,7 +5,7 @@
         <div class="col-8 offset-2">
             <h1>Edit your case</h1>
             <br>
-            <form method="POST" action="/problems/<%=problem._id%>?_method=PUT" novalidate class="needs-validation">
+            <form method="POST" action="/problems/<%=problem._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <label for="species" class="form-label">Species</label>
@@ -24,15 +24,32 @@
                     <div class="invalid-feedback">Please provide is Young or not</div>
                 </div>
                 <div class="mb-3">
-                    <label for="image" class="form-label">Enter valid image URL/link</label>
-                    <input name="problem[image]" value="<%=problem.image%>" class="form-control" required>
-                    <div class="invalid-feedback">Image is compulsory!!</div>
+                    Original image uploaded<br>
+                    <img src="<%=originalImageUrl%>">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload new Image</label>
+                    <input name="problem[image]" type="file" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Location</label>
                     <input name="problem[place]" value="<%=problem.location%>" class="form-control" required>
                     <div class="invalid-feedback">Location is must for us to access the species</div>
                 </div>
+                <div class="mapNew mt-3 offset-1">
+                        <h5>Have problem locating it, Here's the map <i class="fa-solid fa-location-dot"></i> </h5>
+                        <a href="https://mapcarta.com/W100857261?utm_source=chatgpt.com" class="btn btn-warning" target="_blank" rel="noopener noreferrer"  >Map</a>
+                        <h6>Instructions</h6>
+                        <div class="instructions">
+                            <p>1.Look out for landmarks -- Admin block, Library , Temples, MIG etc:-</p>
+                            <p>2.Look out for nearby messes, hostels </p>
+                            <p>3.Look out for nearby departments</p>
+                            <p>4.In case you are near quarters , look out for street number</p>
+
+                            <h6><i class="fa-solid fa-map-location"></i>&nbsp;&nbsp;Your clarity reduces our effort in locating it</h6>
+                        </div>
+
+                    </div>
                 <button class="btn btn-dark editBtn mt-3">Submit</button>
             </form>
             <br>

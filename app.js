@@ -16,6 +16,7 @@ const {problemSchema}=require('./schema.js');
 const problemRouter=require("./routes/problem.js");
 const userRouter=require("./routes/user.js");
 const session=require("express-session");
+const MongoStore=require("connect-mongo");
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
@@ -26,7 +27,7 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/animalWelfare');
+  await mongoose.connect(process.env.ATLASDB_URL);
 }
 
 app.set("view engine", "ejs");
@@ -37,8 +38,20 @@ app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
+const store=MongoStore.create({
+    mongoUrl:process.env.ATLASDB_URL,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600
+});
+store.on("error",()=>{
+    console.log("Error in mongo session store",err);
+})
+
 const sessionOptions={
-    secret:"mysupersecretcode",
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -47,6 +60,8 @@ const sessionOptions={
         httpOnly:true,//to prevent cross scripting attacks
     }
 };
+
+
 app.use(session(sessionOptions));
 app.use(flash());
 

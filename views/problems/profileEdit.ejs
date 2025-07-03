@@ -1,0 +1,59 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Edit Your Profile</h2>
+    <form method="POST" action="/problems/<%=user._id%>/profile/edit?_method=PUT" class="needs-validation" novalidate>
+        
+
+      <!-- Username -->
+      <div class="mb-3">
+        <label class="form-label" for="username">Username</label>
+        <input type="text" class="form-control" name="user[username]" id="username" value="<%= user.username %>" required>
+        <div class="invalid-feedback">Username is required.</div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <input type="email" class="form-control" name="user[email]" id="email" value="<%= user.email %>" required>
+        <div class="invalid-feedback">Valid email is required.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="dept" class="form-label">Department</label>
+        <input type="text" class="form-control" name="user[dept]" id="dept" value="<%=user.dept || 'Not set'%>">
+      </div>
+
+        <!-- Age (readonly/display only) -->
+        <div class=" mb-3">
+            <label class="form-label" for="age">Age</label>
+            <input
+            type="text"
+            class="form-control"
+            id="age"
+            value="<%= user.age || '' %>"
+            name="user[age]"
+            >
+        </div>
+    </div>
+
+
+      <!-- Phone -->
+      <div class="mb-3">
+        <label class="form-label" for="phone">Phone Number</label>
+        <input type="tel" class="form-control" name="user[phoneNumber]" id="phone" value="<%= user.phoneNumber || '' %>">
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="mb-3">
+        <label class="form-label" for="linkedin">LinkedIn Username</label>
+        <input type="text" class="form-control" name="user[linkedInId]" id="linkedin" value="<%= user.linkedInId || '' %>">
+      </div>
+
+      <button type="submit" class="btn btn-primary mb-3">Save Changes</button>
+    </form>
+  </div>
+
+  
+</body>

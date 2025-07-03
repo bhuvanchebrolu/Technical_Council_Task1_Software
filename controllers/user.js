@@ -38,7 +38,7 @@ module.exports.login=async(req,res)=>{
     if(res.locals.redirectUrl){
         return res.redirect(res.locals.redirectUrl);
     }
-    res.redirect("/problems");
+    res.redirect("/home");
 }
 
 module.exports.logout=(req,res,next)=>{

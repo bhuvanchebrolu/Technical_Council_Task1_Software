@@ -7,6 +7,25 @@ const userSchema=new Schema({
         type:String,
         required:true
     },
+    profilePicture:{
+        url:String,
+        filename:String
+
+    },
+    dept:{
+        type:String
+    },
+    age:{
+        type:Number,
+        min:16,
+        max:100
+    },
+    phoneNumber:{
+        type:Number
+    },
+    linkedInId:{
+        type:String
+    }
     
 });
 
